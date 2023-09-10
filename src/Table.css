@@ -1,0 +1,58 @@
+/* Table container */
+.my-table {
+  width: 95%;
+  border-collapse: collapse;
+  margin: 20px;
+}
+
+/* Table header row */
+.my-table thead th {
+  background-color: #f2f2f2;
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+/* Table body rows */
+.my-table tbody tr {
+  border: 1px solid #ddd;
+}
+
+/* Alternate row background color for better readability */
+.my-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Table cells */
+.my-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+/* Hover effect for rows */
+.my-table tbody tr:hover {
+  background-color: #e5e5e5;
+}
+
+/* Styling the pagination component (if using react-table pagination) */
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+.pagination li {
+  margin: 5px;
+  cursor: pointer;
+}
+
+/* Active page styling */
+.pagination .active {
+  font-weight: bold;
+}
+
+/* Previous and Next buttons */
+.pagination .prev-next {
+  font-weight: bold;
+}
