@@ -1,5 +1,5 @@
 import { useTable } from 'react-table';
-import './Table.css';
+import '../css/Table.css';
 
 export default function Table({ columns, data }) {
   const {
