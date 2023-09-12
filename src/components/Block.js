@@ -11,7 +11,7 @@ function Block() {
   const [parentHash, setParentHash] = useState('');
   const [miner, setMiner] = useState('');
 
-  useEffect((number) => {
+  useEffect(() => {
     async function getData() {
       const block = await alchemy.core.getBlock(parseInt(number));
       setTimestamp((new Date(block.timestamp * 1000)).toLocaleString());
