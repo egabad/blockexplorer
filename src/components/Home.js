@@ -1,7 +1,8 @@
-import { Utils } from 'alchemy-sdk';
 import { useEffect, useState } from 'react';
 import Table from "./Table";
 import alchemy from '../alchemy';
+import { blockTableColumns, txTableColumns } from '../data/columns';
+import { weiToGwei } from '../utils';
 
 function Home() {
   const [gasPrice, setGasPrice] = useState('- gwei');
@@ -27,8 +28,7 @@ function Home() {
     async function getData() {
       // Get gas price
       const feeData = await alchemy.core.getFeeData();
-      const feePerGas = Utils.formatUnits(feeData.maxFeePerGas, 'gwei')
-      setGasPrice(parseFloat(feePerGas).toFixed(2) + ' gwei');
+      setGasPrice(weiToGwei(feeData.maxFeePerGas, 2) + ' gwei');
       
       // Get latest block
       const block = await alchemy.core.getBlock('latest');
@@ -80,46 +80,6 @@ function Home() {
     }
     getData();
   }, []);
-
-  const blockTableColumns = [
-    {
-      Header: "Block #",
-      accessor: "blockNum",
-      Cell: (props) => <a href={'block/' + props.value}>{props.value}</a>
-    },
-    {
-      Header: "Miner",
-      accessor: "miner",
-    },
-    {
-      Header: "Transactions",
-      accessor: "transactions",
-    },
-    {
-      Header: "Timestamp",
-      accessor: "timestamp",
-    },
-  ];
-
-  const txTableColumns = [
-    {
-      Header: "Tx Hash",
-      accessor: "hash",
-      // Cell: (props) => <a href={'transaction/' + props.value}>{props.value}</a>
-    },
-    {
-      Header: "From",
-      accessor: "from",
-    },
-    {
-      Header: "To",
-      accessor: "to",
-    },
-    {
-      Header: "Status",
-      accessor: "status",
-    },
-  ];
 
   return (<div className="App">
     <h2> Gas Price Estimate: {gasPrice} </h2>
